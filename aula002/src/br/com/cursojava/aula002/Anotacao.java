@@ -10,5 +10,20 @@ public class Anotacao {
 	
 	
 	//toString - traz o valor do objeto no formato String
+	
+	
+	//GitHub
+	/*  1 - git init
+
+	 *  2 - git commit -m "projeto aula002"
+	 * 
+	 *  3 - git config --local user.email "andrenaatz@yahoo.com.br"
+	 * 
+	 *  4 - git config --local user.name "Andre"
+	 * 
+	 *  5 - git commit -m "projeto aula002"
+	 *  
+	 *  6 - git push origin master
+	 */
 
 }
