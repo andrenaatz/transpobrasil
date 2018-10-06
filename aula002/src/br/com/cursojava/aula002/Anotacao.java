@@ -2,7 +2,7 @@ package br.com.cursojava.aula002;
 
 public class Anotacao {
 	
-	//parse - pega uma String e transforma numa variavel primitiva da Classe Wraper que est· sendo usada (nao tem no Charecter)
+	//parse - pega uma String e transforma numa variavel primitiva da Classe Wraper que est√° sendo usada (nao tem no Charecter)
 	
 	
 	//valueOf - pega o argumento (que pode ser String ou a variavel primitiva da Classe wraper e retorna um objeto da Classe Wraper)
@@ -14,6 +14,14 @@ public class Anotacao {
 	
 	//GitHub
 	/*  1 - git init
+	
+	        git remote add origin git@github.com:gabsferreira/postsdoblog.git 
+		
+		git status
+		
+		git add Post.txt 
+		
+		
 
 	 *  2 - git commit -m "projeto aula002"
 	 * 
