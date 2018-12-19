@@ -1,0 +1,311 @@
+postgre 9,6 , como fazer:
+
+1 -> Database -> criar 
+
+
+2 -> ALTER USER postgres WITH ENCRYPTED PASSWORD 'admin';  // para mudar a senha do postgres
+
+
+3 -> Query Tools 
+
+4 ->	
+create table produtos(
+id serial not null primary key,
+	
+nome varchar(100) not null,
+	
+preco decimal(10,2) not null
+
+);
+
+
+
+5 ->     
+
+insert into produtos(nome, preco) values
+
+('produto 01', 10.90),
+('produto 02', 110.90),
+('produto 03', 200),
+('produto 04', 7.80),
+('produto 05', 5),
+('meu produto 06', 10),
+('televisor 07', 1890),
+('cafe 08', 5.84),
+('XBox One 09', 990.97),
+('produto 10', 110.90);
+
+
+
+
+---
+
+no java -> Eclipse
+
+
+1 -> project --> JPA --> JPA project
+
+
+(conecçao no arq java)
+
+
+
+2 -> Configure --> convert Maven
+
+
+
+3-> porn.xml --> configurar o arquivo
+
+codigo: 
+
+
+ <build>
+    <sourceDirectory>src</sourceDirectory>
+    <resources>
+      <resource>
+        <directory>src</directory>
+        <excludes>
+          <exclude>**/*.java</exclude>
+        </excludes>
+      </resource>
+    </resources>
+    <plugins>
+      <plugin>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.5.1</version>
+        <configuration>
+          <source>1.8</source>
+          <target>1.8</target>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+  
+  <dependencies>
+  <dependency>
+  <groupId>org.postgresql</groupId>
+  <artifactId>postgresql</artifactId>
+  <version>42.2.2</version>
+  </dependency>
+  
+  <dependency>
+  <groupId>org.hibernate</groupId>
+  <artifactId>hibernate-core</artifactId>
+  <version>5.2.6.Final</version>
+  
+  </dependency>
+  </dependencies>
+  
+  
+</project>
+
+
+4 -> ir em project --> Maven --> Update project
+
+
+
+ *** (ctrl + shift + f --> formatar a tabulaçao do codigo)
+
+
+
+
+
+---
+
+
+codigo para usar JPA:
+
+
+
+package aula10;
+
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+
+public class JPAUtil {
+
+	private static EntityManagerFactory emf;
+
+	public static EntityManagerFactory getEmf() {
+
+		if (emf == null || !emf.isOpen()) {
+			emf = Persistence.createEntityManagerFactory("aula10");
+
+		}
+
+		return emf;
+	}
+
+	public static EntityManager createEntityManager(){
+
+		return getEmf().createEntityManager();
+
+	}
+
+	public static void closeEmf() {
+		if (emf != null && emf.isOpen()) {
+
+			emf.close();
+		}
+
+	}
+
+}
+
+
+
+
+--
+
+
+<persistence-unit name="aula10"> // definição de uma base de dados, pode ter varias
+
+-----
+
+No Eclipse:
+
+maven - 
+
+
+porn.xml :
+
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>transpobrasil</groupId>
+  <artifactId>transpobrasil</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <build>
+    <sourceDirectory>src</sourceDirectory>
+    <plugins>
+      <plugin>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.5.1</version>
+        <configuration>
+          <source>1.8</source>
+          <target>1.8</target>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+  
+  <dependencies>
+    
+   
+  <dependency>
+  	<groupId>org.postgresql</groupId>
+  	<artifactId>postgresql</artifactId>
+  	<version>9.3-1102-jdbc41</version>
+  </dependency>
+  
+  </dependencies>
+  
+</project>
+
+
+-------
+
+maven --> Updata project
+
+------
+
+codigo no java para criar a conexao com o banco de dados:
+
+
+package br.com.cursojava.aula009;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+
+public class BancoUtil {
+	
+	private static final String URL ="jdbc:postgresql://localhost:5432/curso";
+	private static final String USUARIO = "postgres";
+	private static final String SENHA ="admin";
+	private static final String DRIVER = "org.postgresql.Driver";
+	private static Connection conexao;
+	
+	//CARREGAMENTO PARA VERSOES ANTIGAS:
+	
+	static{
+		
+		try {
+			Class.forName(DRIVER);
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			System.out.println("nao foi possivel carregar o Driver do Banco");
+		}
+		
+	}
+
+
+public static Connection getConexao(){
+	try{
+	if(conexao == null || conexao.isClosed()){
+		
+		conexao = DriverManager.getConnection(URL,USUARIO,SENHA);
+	}
+	}catch(SQLException ex){
+		System.out.println("Falha na conexao com o banco de dados");
+		ex.printStackTrace();
+	}
+	return conexao;
+	}
+
+public static void main(String[] args) throws SQLException{
+	
+	Connection con = getConexao();
+	if(con !=null){
+		System.out.println("Conexão realizada com sucesso");
+		con.close();
+	}else{
+		
+		System.out.println("Ops, Turma temos um problema");
+	}
+	
+}
+	
+}
+
+---------------------------
+
+modulo intermediario entre java (Objetos) e Banco de dados (tabelas) --> DAO (repositorio) ... ele pega os dados de um e converte para outro (Objeto <--> Tabela )
+
+
+
+------
+
+java ee --> server -->tomcat 8.0
+
+
+------------------------------------------
+
+
+
+aula 10 
+
+
+------------
+
+
+alt + shift + r -> renomeia as variaveis
+
+
+
+-------------------
+
+
+MVC = model view controller --> modelo de implementar um prg (muito usado na web)... de modo geral os repositorios fazem parte do model(modelo)
+
+view .. interaçao com o usuario (HTML, xhtml, JSP, )
+
+controller... delega as funcoes... logica do programa
+business... 
+
+---------
+Criar um CSS:
+
+
+webcontent -> criar pasta resources -> criar pasta app -> criar pasta css -> criar arquivo app.css

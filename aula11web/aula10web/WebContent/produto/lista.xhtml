@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:head>
+</h:head>
+
+<h:body>
+	<h1>Lista de Produtos</h1>
+
+	<div>
+	
+		<h:outputLink value="./form.xhtml">
+		<f:param name="oid" value="novo"/>
+		
+		Novo
+		
+		</h:outputLink>
+
+		<h:dataTable value="#{produtoBean.produtos}" var="produto">
+			<h:column>
+				<f:facet name="header">Id</f:facet>
+				<h:outputText value="#{produto.id}" />
+			</h:column>
+
+			<h:column>
+				<f:facet name="header">Nome</f:facet>
+				<h:outputLink value="./form.xhtml">
+				<f:param name="oid" value="#{produto.id}"/>
+					<h:outputText value="#{produto.nome}" />
+					
+					</h:outputLink>
+			</h:column>
+
+			<h:column>
+				<f:facet name="header">preco</f:facet>
+				<h:outputText value="#{produto.preco}" />
+			</h:column>
+
+		</h:dataTable>
+
+
+	</div>
+
+
+</h:body>
+</html>

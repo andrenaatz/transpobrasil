@@ -1,0 +1,1170 @@
+database - tabela primaria onde fica armazenados varias tabelas
+
+tabela - formado por linhas e colunas... as linhas sao os registros.... e as colunas são os campos, dados.
+
+banco de dados relacional.... relaciona uma tabela com outra.
+
+na maioria dos casos o banco de dados se responsabiliza em colocar a chave primaria (sintetica)
+
+uma chave primaria natural é o CPF
+
+
+
+
+banco de dados
+
+
+//criando tabelas
+
+create table produtos(
+
+nome_da_coluna tipo_de_dado restriçoes,
+nome_da_coluna tipo_de_dado restriçoes,  
+
+);
+
+//para cada coluna especificar acima nome da coluna , tipo de dado, restriçoes
+
+ex.:
+
+create table produtos(
+	codigo integer not null unique,
+	nome varchar(150) not null,
+	preco decimal(10,2) not null
+);
+
+
+acesse os tipos de dados: postgresql.org/docs/9.4/datatype-numeric.html
+
+
+tipos de dados numericos:
+
+smallint
+
+integer
+
+bigint
+
+
+decimal
+
+numeric
+
+real
+
+double precision
+
+smallserial
+
+serial
+
+bigserial
+
+
+
+tipos texto:
+
+varchar(n) - o tamanho é variavel, mas limita o maximo de caracteres
+char(n) - o tamanho é fixo
+text - sem limites no tamanho
+
+
+tipos de data e hora
+
+timestamp - data e hora no mesmo campo... with time zone... without time zone
+date
+time
+interval 
+
+tipos de dados ( Postgree aceita... outros nao)
+
+true - t - y - yes - on - 1
+
+false - f - no - off - 0
+
+
+
+-------------------
+
+select * from produtos
+
+select produtos.codigo, produtos.nome from produtos (se for de mais de uma tabela a sintaxe deve conter antes da coluna o nome da tabela)
+
+
+select produtos.codigo, produtos.nome from produtos as prod
+
+select prod.codigo, prod.nome from produtos as prod
+
+select prod.codigo, prod.nome from produtos prod
+
+select prod.codigo as cod, prod.nome as primeironome from produtos as prod
+
+* varias sintaxes acima que funcionam
+
+
+
+ex. de inserir dados:
+
+insert into produtos(codigo, nome, preco) values (1, 'Produto 01', 29.90),(2, 'Produto 02', 59.41);
+
+
+sintaxe com especificaçao do que quero buscar
+
+select nome,preco from produtos
+where preco > 30
+
+outro exemplo:
+
+select nome,preco from produtos
+where preco >= 100 or codigo = 1
+
+
+outro exemplo:
+
+select nome,preco from produtos
+where preco >= 100 or codigo = 1
+
+outra forma:
+
+select nome,preco from produtos
+where preco between 10 and 50
+
+
+incluir nova coluna em registros já existentes:
+
+alter table produtos
+add column marca varchar(50)
+
+alter table produtos
+drop column marca;
+
+-- este comando é comentario: '--'
+
+
+
+
+
+
+
+select nome from pessoas
+
+insert into pessoas(codigo, nome, ano) values(1, 'Andre', 1976),(2, 'Joao', 2008);
+
+select nome,preco from produtos
+where preco between 10 and 50
+
+alter table produtos
+add column marca varchar(50)
+
+select * from produtos
+
+alter table produtos
+drop column marca;
+
+-- este comando é comentario: '--'
+
+alter table produtos
+add column marcacao varchar(50)
+
+
+alter table produtos
+rename marcacao to marca;
+
+alter table produtos
+alter column marca type text;
+
+select * from produtos
+
+insert into produtos(marca) values ('eu estou testando o cast');
+
+update produtos set preco = 38.00, marca='Profissa'
+where codigo =1
+
+alter table produtos
+drop column marca;
+
+delete from produtos where codigo = 2
+
+truncate table produtos
+-- limpa os registros
+
+insert into produtos(codigo, nome, preco) values(1, 'martelo', 12.00),(2, 'serra', 5.00);
+
+drop table produtos;
+
+select * from produtos
+
+update produtos set marca = 'teste de tamanho' where codigo = 2
+update produtos set marca = null where codigo = 2
+
+
+-------------------------------
+
+select nome from pessoas
+
+insert into pessoas(codigo, nome, ano) values(1, 'Andre', 1976),(2, 'Joao', 2008);
+
+select nome,preco from produtos
+where preco between 10 and 50
+
+alter table produtos
+add column marca varchar(50)
+
+select * from produtos
+
+alter table produtos
+drop column marca;
+
+-- este comando é comentario: '--'
+
+alter table produtos
+add column marcacao varchar(50)
+
+
+alter table produtos
+rename marcacao to marca;
+
+alter table produtos
+alter column marca type text;
+
+select * from produtos
+
+insert into produtos(marca) values ('eu estou testando o cast');
+
+update produtos set preco = 38.00, marca='Profissa'
+where codigo =1
+
+alter table produtos
+drop column marca;
+
+delete from produtos where codigo = 2
+
+truncate table produtos
+-- limpa os registros
+
+insert into produtos(codigo, nome, preco) values(1, 'martelo', 12.00),(2, 'serra', 5.00);
+
+drop table produtos;
+
+select * from produtos
+
+update produtos set marca = 'teste de tamanho' where codigo = 2
+update produtos set marca = null where codigo = 2
+
+alter table produtos
+alter column marca type varchar(5);
+
+alter table produtos
+alter column marca type text;
+
+
+
+------------------
+
+--24
+
+create table produtos(
+	id integer not null unique,
+	nome varchar(200) not null,
+	preco decimal(10,2) not null
+);
+
+select * from produtos
+
+insert into produtos(id, nome, preco) 
+values
+(1, 'Televisor 32pol', 1300.00),
+(2, 'Sofa 3 lugares', 2500.00),
+(3, 'Jogo de cozinha', 5600.00),
+(4, 'Guarda roupa', 2150.90);
+
+select * from produtos
+
+
+--25
+
+update produtos set preco = 1399.90 where id = 1
+
+select * from produtos
+
+
+
+--26
+
+update produtos set nome = 'jogo de cozinha modular' where id = 3
+
+select * from produtos
+
+--27
+
+select * from produtos
+
+--28
+
+select * from produtos where id=1
+
+--29
+
+select nome, preco from produtos
+
+--30
+
+delete from produtos where id = 4;
+
+select * from produtos
+
+--excluindo db rhDatabase
+
+---
+
+perguntas
+
+1) Crie uma base de dados com o nome rhDatabase
+ 
+2) Dentro da base de dados rhDatabase inclua uma tabela com o nome funcionarios e que possua as colunas id, nome
+  
+3) Inclua a coluna idade com o tipo varchar(100) 
+
+4) inclua a coluna setor com o tipo integer
+ 
+5) altere a coluna setor para o tipo varchar(100)
+ 
+6) crie a coluna dependentes com o tipo integer 	
+
+7) remova a coluna  dependentes 
+
+8) crie a Tabela Cargos com os campos id integer, nome varchar(10), descricao varchar(1000) 
+
+9) altere a coluna nome para varchar(255) 
+
+10) Crie a tabela Setores com os campos id integer e nome varchar(100) 
+
+
+===============================
+
+
+11)Crie uma base de dados prodDatabase 	
+
+12) Dentro da base de dados prodDatabase inclua a tabela Produto com as seguintes colunas id integer, nome varchar(100), valor decimal(10,4) 
+
+13) Dentro da base de dados prodDatabase inclua a tabela Pedido com as seguintes colunas: id integer, codigo integer, cliente varchar(255) dataCriacao datetime 
+
+14) Dentro da base de dados prodDatabase inclua a tabela PedidoItem com as seguintes colunas: idPedido integer, idProduto integer, quantidade integer 
+
+15)Dentro da base de dados prodDatabase inclua a tabela Entregas com as seguintes colunas: idPedido integer , rua varchar(100), numero varchar(1000), bairro varchar(255) cidade varchar(255) 
+
+16) Na Tabela Entregas altere a coluna rua para varchar(255)
+ 
+17) Na tabela Entregas inclua a coluna complemento varchar(255) 
+
+18) Na tabela Entregas inclua a coluna cep varchar(8) 
+
+19) Na tabela Entregas inclua a coluna Estado varchar(100) 
+
+20) Remova a coluna Estado da tabela Entregas 
+
+21) apague a base de dados rh Database 
+
+22) apague a base de dados prodDatabase 
+
+23) Crie uma base de dados chamada capitulo004;
+
+24) crie uma tabela produtos com as colunas id integer unique, nome varchar(200)e preco 	decimal(10,2).
+Insira os seguintes valores na tabela produtos
+
+id       nome                       valor
+1      'Televisor 32pol '       1300.00
+2      'Sofá 3 lugares'         2500.00
+3     'Jogo de cozinha'       5600.00
+4    'Guarda roupa '           2150.90
+
+
+25) Altere o valor do televisor para 1399.90
+
+26) Altere o nome do jogo de cozinha para 'Jogo de cozinha modular'
+
+27) Selecione todos os produtos
+
+28) Selecione apenas o produto com id = 1
+
+29) Selecione apenas o nome e o valor de todos os produtos
+
+30) Remova o produto com id = 4
+
+
+
+-----------------
+
+
+create table produtos2(
+	id serial not null primary key,
+    nome varchar(50),
+    preco decimal(10,2) not null
+);
+
+select * from produtos2
+
+
+insert into produtos2(nome, preco) values
+
+('produto 01', 10.90),
+('produto 02', 110.90),
+('produto 03', 200),
+('produto 04', 7.80),
+('produto 05', 5),
+('meu produto 06', 10),
+('televisor 07', 1890),
+('cafe 08', 5.84),
+('XBox One 09', 990.97),
+('produto 10', 110.90);
+
+select * from produtos2
+
+select nome, preco, round(preco * 2.10,2) as precoVenda from produtos2
+-- round traz o valor para 2 casas decimais arredondadas no exemplo acima
+
+
+
+
+create table produtos2(
+	id serial not null primary key,
+    nome varchar(50),
+    preco decimal(10,2) not null
+);
+
+select * from produtos2
+
+
+insert into produtos2(nome, preco) values
+
+('produto 01', 10.90),
+('produto 02', 110.90),
+('produto 03', 200),
+('produto 04', 7.80),
+('produto 05', 5),
+('meu produto 06', 10),
+('televisor 07', 1890),
+('cafe 08', 5.84),
+('XBox One 09', 990.97),
+('produto 10', 110.90);
+
+select * from produtos2
+
+select nome, preco, round(preco * 2.10,2) as precoVenda from produtos2
+-- round traz o valor para 2 casas decimais arredondadas no exemplo acima
+
+select preco + preco as dobro from produtos2;
+
+--funcao AVG media
+select round(avg(preco),2) as media from produtos2;
+
+--funcao MAX
+
+select round(max(preco),2) as maximo from produtos2;
+
+-- select composto... buscando uma condicao e trazendo todo o registro
+
+select * from produtos2 where preco =(select round(min(preco),2) as minimo from produtos2);
+
+
+---------------------------
+
+
+--soma de todos os produtos
+
+select sum(preco) as soma from produtos2;
+
+-- quantos contagem de produtos
+
+select count(preco) quantidade from produtos2
+
+-- 
+
+select md5(nome), nome from produtos2
+
+-- caixa baixa e alta
+select lower(nome), upper(nome) from produtos2 
+
+
+
+------------
+
+
+
+-- traz apartir do caracter 2
+select substring(nome, 2) from produtos2;
+
+
+-- '||' comando para concatenar
+select lower(substring(nome, 1,1))||upper(substring(nome,2)) as concatenar from produtos2;
+
+
+
+
+
+-------------
+
+
+
+
+-- traz apartir do caracter 2
+select substring(nome, 2) from produtos2;
+
+
+-- '||' comando para concatenar
+select lower(substring(nome, 1,1))||upper(substring(nome,2)) as concatenar from produtos2;
+
+
+-- pesquisar por um texto que contenha no registro (like - ele tera que passar por todos os registros para comparar).. .e usando upper ou lower para nao diferenciar entre maiusculas ou minusculas
+
+select * from produtos2 where upper(nome) like upper('PRoduto%')
+
+select * from produtos2 where upper(nome) like upper('x%one%') limit 5; --limit vai trazer os 5 primeiros neste exemplo, porem vai primeiro buscar em todos os registros
+
+
+--
+
+
+
+create table tarefas(
+
+	id serial not null primary key,
+    nome varchar(500) not null,
+    "dataHoraCriacao" timestamp not null, --entre aspas duplas traz o titulo em caixa cfe escrito... na busca tera que colocar tb entre aspas duplas
+    "dataTermino" date
+);
+
+select * from tarefas
+
+---
+
+drop table tarefas
+
+---
+
+insert into tarefas(nome, "dataHoraCriacao") values
+('Tarefa 01', current_timestamp),
+
+('Tarefa 02', to_timestamp('22/11/2018 10:30','DD/MM/YYYY HH:MI')),
+
+('Tarefa 03', to_timestamp('2018/11/03 10:30','YYYY/MM/DD HH:MI')),
+
+('Tarefa 04', to_timestamp('05-09-2018 10:30','DD/MM/YYYY HH:MI')),
+
+('Tarefa 01', '2018-11-25 07:50');
+                           
+
+select * from tarefas                           
+
+---
+
+select nome, to_char("dataHoraCriacao", 'DD/MM/YYYY HH24:MI') from tarefas
+
+--------------------------------------------
+
+2o. exercicios
+
+
+Crie uma base de dados com o nome CasasBahia
+Crie uma tabela produtos com as seguintes colunas:
+id int not null primary key,
+nome varchar(100),
+preco decimal(10,2)
+
+insira os seguintes produtos
+1, 'Televisao LED 42', 1400.40 
+2, 'Televisao LED 32', 1250.30
+3, 'Aparelho de Jantar Tramontina', 800.0 
+4, 'Playstation 4', 2400.40 
+5, 'Playstation 3', 720.99 
+6, 'Sofa ', 2400.60 	
+7, 'Fritadeira elétrica', 200 
+8, 'Forno Microondas 20l', 630.90 
+9, 'Banheira Hidromassagem G',19999.90 
+10, 'Roupeiro 6 portas', 1110.10 
+11, 'Notebook Del vostro', 2200.40 
+12, 'IPhone 6S', 3500.23 
+
+selecione os produtos com preço entre 1000 e 2000 
+selecione os produtos cujo nome tenha Televisao 
+selecione os produtos cujo nome tenha Playstation 
+
+
+===================================
+
+
+selecione a média de preços dos produtos 	
+selecione o preço do produto mais caro 
+selecione o preço do produto mais barato 
+selecione a soma do preço de todos os produtos 
+selecione o nome de todos os produtos em caixa alta 
+selecione o nome de todos os produtos em caixa baixa 
+selecione a data atual 	
+selecione a data atual formatada com o padrão europeu (dd.MM.yyyy) 
+selecione a quantidade de caracteres do nome de cada produto 
+selecione os primeiros  7 caracteres dos nomes de cada produto 
+selecione os 5 caracteres a partir da 3ª posição dos nomes de cada produto 
+selecione a quantidade de produtos cadastrados 
+selecione a quantidade de produtos cadastrados que possuem valor maior que 1000 
+selecione a quantidade de produtos cadastrados que possuem valor menor que 1000 
+selecione a soma dos produtos que possuem valor maior que 1300 
+selecione o maior valor dos produtos que possuem valor < 1500 
+selecione a média do valor dos produtos  que possuem valor menor que 1200 
+selecione a média do valor dos produtos que possuem valor maior que 1000 
+selecione a média dos produtos que possuem valor entre 10000 e 20000 
+selecione o nome e o preço do maior produto sem utilizar limit (pesquisar subquery)	
+
+
+----------
+
+respostas
+
+--1
+drop table produtos
+
+create table produtos(
+	id serial not null primary key,
+    nome varchar(100),
+    preco decimal(10,2)
+);
+
+select * from produtos
+
+--2
+
+insert into produtos(nome, preco) values
+
+('Televisao LED 42', 1400.40),
+('Televisao LED 32', 1250.30),
+('Aparelho de Jantar Tramontina', 800.00),
+('Playstation 4', 2400.40),
+('Playstation 3', 720.99),
+('Sofa', 2400.60),
+('Fritadeira elétrica', 200),
+('Forno Microondas 20l', 630.90),
+('Banheira Hidromassagem G', 19999.90),
+('Roupeiro 6 portas', 1110.10),
+('Notebook Del vostro', 2200.40),
+('IPhone 6S', 3500.23);
+
+
+
+select * from produtos
+
+
+--3
+
+select * from produtos where preco > 1000 and preco < 2000
+
+--4
+
+
+select * from produtos where upper(nome) like upper('%Televisao%')
+
+--5
+
+select * from produtos where upper(nome) like upper('%playstation%')
+
+--6
+
+select round(avg(preco),2) as media from produtos;
+
+--7
+select round(max(preco),2) as maior from produtos;
+
+--8
+select round(min(preco),2) as menor from produtos;
+
+
+--9
+
+select round(sum(preco),2) as soma from produtos;
+
+
+--10
+
+select upper(nome) from produtos
+--11
+select lower(nome) from produtos
+
+--12 hora atual
+
+select to_char("dataHoraCriacao", 'DD/MM/YYYY HH24:MI') from produtos
+
+--13 hora padrao europeu
+
+select nome, to_char("dataHoraCriacao", 'DD/MM/YYYY HH24:MI') from tarefas
+
+
+--14 ?????
+
+select count(nome) as quantidade from produtos
+
+--15 ????
+
+select substring(nome, 7) from produtos;
+
+--16?????
+
+select substring(nome, 3,7) from produtos;
+
+--17
+
+select count(nome) as quantidade from produtos
+
+--18
+select count(nome) as quantidade from produtos where preco >1000
+
+--19
+
+select count(nome) as quantidade from produtos where preco <1000
+
+--20
+
+select sum(preco) as soma from produtos where preco>1300
+
+
+--21
+
+select max(preco) as maior from produtos where preco<1500
+
+
+--22
+
+select avg(preco) as media from produtos where preco<1200
+
+
+--23
+
+select avg(preco) as media from produtos where preco>1000
+
+--24
+
+select avg(preco) as media from produtos where preco>10000 and preco<20000
+
+--25 ??????
+
+select nome,preco from produtos where preco = (max(preco) from produtos)
+
+
+
+
+-------------------------------------------
+
+
+
+CHAVE ESTRANGEIRA
+
+
+
+create table categorias(
+
+    id serial not null primary key,
+    nome varchar(50) not null
+);
+
+
+create table livros(
+	id serial not null primary key,
+    nome varchar(100) not null,
+    categoria_id integer,
+    foreign key(categoria_id) references categorias(id)
+);
+
+select * from categorias;
+
+select * from livros
+
+--
+insert into categorias(nome)
+values ('ação'),('ficção'),('drama'),('tecnologia'),
+		('suspense'),('comédia'),('terror'),('aventura');
+        
+insert into livros(nome, categoria_id) 
+values ('E o Vento Levou',3),
+		('O Último Guerreiro', 1),
+        ('Divergente', 2),
+        ('Java como Programar', 4),
+        ('C Completo e total', 4),
+        ('Poeira em Alto Mar', 5),
+        ('Dois carecas brigando por um pente', 1);
+        
+
+
+***** COMANDO INER JOY - AREA EM COMUM ENTRE DUAS TABELAS
+
+***** COMANDO LEFT JOY - AREA EM COMUM E UNICA DO LADO ESQUERDO
+
+***** COMANDO RIGHT JOY - AREA EM COMUM E UNICA DO LADO DIREITO
+
+
+
+insert into livros(nome) VALUES('Java para bizonhos');
+
+select * from livros
+
+
+
+-- LIGAÇOES DAS TABELAS
+
+select livros.nome, categorias.nome as categoria from livros 
+inner join categorias on categorias.id = livros.categoria_id
+
+----
+
+select livros.nome, categorias.nome as categoria from livros 
+left join categorias on categorias.id = livros.categoria_id
+
+-----
+
+select livros.nome, categorias.nome as categoria from livros 
+right join categorias on categorias.id = livros.categoria_id
+
+-----
+
+select livros.nome, categorias.nome as categoria from livros 
+left join categorias on categorias.id = livros.categoria_id
+where livros.categoria_id is null -- usar is null
+
+
+----
+
+select livros.nome, categorias.nome as categoria from livros 
+right join categorias on categorias.id = livros.categoria_id
+where livros.categoria_id is null
+
+--
+
+---
+
+
+select livros.nome, categorias.nome as categoria from livros 
+right join categorias on categorias.id = livros.categoria_id
+where livros.categoria_id is null
+
+---
+
+select count(categorias.nome) from livros 
+right join categorias on categorias.id = livros.categoria_id
+where livros.nome is null
+
+---
+
+
+select count(livros.id), categorias.nome from livros 
+right join categorias on categorias.id = livros.categoria_id
+group by categorias.nome -- agrupamento por categoria
+
+----
+
+*** nao tem como usar uma funcao de agregaçao com o where 
+
+para isso usa-se a funçao having.
+
+
+** usando a funçao having :
+
+
+select count(livros.id), categorias.nome from livros 
+right join categorias on categorias.id = livros.categoria_id
+group by categorias.nome -- agrupamento por categoria
+having count(livros.id)>1
+
+
+----
+
+http://dontpad.com/transpobrasil/sabado/db/exercicios03
+
+Exercicio 3
+
+01) Escreva o comando que cria uma base de dados com o nome db_teste2
+
+02) Escreva o comando que cria a tabela Carro com os seguintes atributos:
+id serial not null primary key,
+marca varchar(50) not null,
+modelo varchar(50) not null,
+cor varchar(15) not null,
+ano_fabricacao int not null,
+ano_modelo int  not null,
+placa varchar(7) not null
+
+
+03) Incluir as seguintes informações na tabela Carro:
+marca   modelo      cor     ano_fabricacao ano_modelo placa
+Ford    New Fiesta  Branco   2014           2014      DDD0011
+Ford    Focus       Preto    2014           2015      FFP0000
+Ford    Fusion      Prata    2015           2015      FUP1212
+Fiat    147         Branco   1983           1983      INU1313
+Fiat    Uno         Vermelho 2001           2001      FUV1414 
+BMW     320I        Prata    2015           2015      BMP1616
+
+
+
+04) Selecionar os carros da marca Ford
+05) Selecionar os carros da marca Fiat
+06) Selecionar os carros com ano de fabricação menor que 2000
+07) Selecionar os carros com ano_modelo 2015 
+08) Selecionar os carros de cor Prata 
+
+
+
+09)Criar a tabela Cargo  conforme informações abaixo:
+    idCargo	integer not null primary key 
+    nomeCargo	VARCHAR(50)
+    salarioBruto	DECIMAL(10,2)
+    descontoSalario	DECIMAL(10,2)
+10)Criar a tabela Colaborador  conforme informações abaixo:
+	idColaborador	integer not null primary key 
+    nomeColaborador	VARCHAR(50)
+    idCargo	integer
+	
+11)Criar a tabela Colaborador_Ferias  conforme informações abaixo:
+ idColaborador	    integer not null primary key 
+    data_saida	    date
+    data_retorno    date 
+	
+12) Adicione os seguintes dados na tabela Cargo:
+idCargo	nomeCargo							salarioBruto		descontoSalario
+1		Estagiário							R$   850,00			R$   0,00
+2		Desenvolvedor Java Júnior - SE		R$ 1.150,00			R$   250,00
+3		Desenvolvedor Java Pleno - SE		R$ 1.900,00			R$   400,00
+4		Desenvolvedor Java Senior  - SE		R$ 3.000,00			R$   600,00
+5		Designer Gráfico					R$ 1.580,00			R$   360,00
+6		Analista de Marketing				R$ 2.400,00			R$   420,00
+7		Desenvolvedor Java Web Júnior		R$ 1.230,00			R$   260,00
+8		Desenvolvedor Java Web Pleno		R$ 2.170,00			R$   680,00
+9		Desenvolvedor Java Senior			R$ 3.400,00			R$   700,00
+10		Suporte Nível 1						R$   900,00			R$   120,00
+11		Suporte Nível 2						R$ 1.600,00			R$   360,00
+12		Suporte Nível 3						R$ 2.100,00			R$   475,00
+13		Web Master Nivel 1					R$ 1.500,00			R$   356,00
+14		Web Master Nível 2					R$ 2.350,00			R$   580,00
+15		Web Master Nível 3					R$ 3.600,00			R$   720,00
+16		Analista de Projetos 				R$ 5.000,00			R$ 1.020,00
+17		Projetista							R$ 8.000,00			R$ 1.900,00
+18		Arquiteto de Software				R$ 7.500,00			R$ 1.750,00
+19		Implantador de Sistemas				R$ 4.600,00			R$   850,00
+20		Desenvolvedor Java Mobile			R$ 6.000,00			R$   980,00
+
+13)Adicione os seguintes Colaboradores na tabela Colaborador:
+idColaborador	nomeColaborador	    	idCargo
+1	            Daiana Cristina	     	
+2				Andréas Silver			5
+3				Juliana Ribeiro			13
+4				Amanda Schultz			7
+5				Cristiana Lobo			10
+6				Brenda Alvarez			6
+7				Carla Oliveira			16
+8				Orlando Pamplona		19
+9				Alex Marques			18
+10				Santhyago Alves			20
+11				Júlio César				1
+12				Diego de Lima			20
+13				Cleberson Kist			6
+14				Everton Duarte			9
+15				Vanessa Montres			5
+16				Bianca Vasconselos		15
+17				Daniel Silva			11
+18				Ellen Moreira			17
+19				Tatiana Holtrup			3
+20				Viviane de Souza		14
+21				Paloma Oliveira			20
+22				Jéssica Mattos			2
+23				Óliver Duvivier			4
+24				Luana Silveira			1
+25				Jennifer Verciani		5
+26				Mariana Nascimento		8
+27				Mônica Silvestre		11
+28				Gabriela Novaes			12
+29				George Marcel			15
+30				Hélio Castro			1
+31				Emanuela Gonzales		20
+32				Priscila Medeiros		12
+33				Bruna Conceição			4
+34				Andriane Coelho			7
+35				Rebeca Bortolato		15
+36				Hellen Cristiana 		18
+37				Gustavo Souza			5
+38				Élton Civieiro			4
+39										17
+40				Ramon Duarte			20
+41				Fernando Duve			3
+42				null						5
+43				Patrícia Alves			16
+44				Larissa Torres			7
+45				Elisiane Peris			13
+
+14) Adicione os seguintes dados  na tabela Colaborador_Ferias:
+idColaborador	        data_saida	    	        data_retorno
+1	          		03/01/2014		     	03/02/2014
+2				03/01/2014			03/02/2014
+3				03/01/2014  		        03/02/2014
+4				03/01/2014			03/02/2014
+5				03/01/2014			03/02/2014
+6				03/01/2014			03/02/2014
+7				03/01/2014			03/02/2014
+8				04/02/2014			07/03/2014
+9				04/02/2014			07/03/2014
+10				04/02/2014			07/03/2014
+11				04/02/2014			07/03/2014
+12				04/02/2014			07/03/2014
+13				04/02/2014			07/03/2014
+14				04/02/2014			07/03/2014
+15				08/03/2014			08/04/2014
+16				08/03/2014			08/04/2014
+17				08/03/2014			08/04/2014
+18				08/03/2014			08/04/2014
+19				08/03/2014			08/04/2014
+20				08/03/2014			08/04/2014
+40				03/10/2014			03/11/2014
+41				03/10/2014			03/11/2014
+43				03/10/2014			03/11/2014
+44				03/10/2014			03/11/2014
+45				03/10/2014			03/11/2014
+
+15) Exclua os colaboradores que não possuem nome.
+16) Crie uma consulta que busque os Colaboradores que possuem salario > 1500
+17) Crie uma consulta que busque os Colaboradores que possuem salario < 1300
+18)Crie uma consulta que busque os Colaboradores que possuem desconto de salario > 500
+19) Crie uma consulta que busque o nome dos colaboradores juntamente com seus cargos
+20) Crie uma consulta que busque os colaboradores que possuem a palavra "Java" na descrição de seu cargo.
+21) Crie uma consulta dos Colaboradores que não tiveram férias
+22) Crie uma consulta que busque os colaboradores que  tiraram férias no mês de Janeiro de 2014
+23) Crie uma consulta que busque os colaboradores que  tiraram férias no mês de Março de 2014
+24) Crie uma consulta que busque os colaboradores que  tiraram férias no mês de outubro de 2014
+25) Crie uma consulta que busque os colaboradores que  tiraram férias em 2014
+26) Crie uma consulta que busque o cargo dos colaboradores que tiraram férias no mês de Março de 2014
+
+27) crie uma tabela Produtos com os campos id, nome, valor 
+
+28) insira os seguintes produtos
+1, 'Televisao LED 42', 1400.40 
+2, 'Televisao LED 32', 1250.30
+3, 'Aparelho de Jantar Tramontina', 800.0 
+4, 'Playstation 4', 2400.40 
+5, 'Playstation 3', 720.99 
+6, 'Sofa ', 2400.60 	
+7, 'Fritadeira elétrica', 200 
+8, 'Forno Microondas 20l', 630.90 
+9, 'Banheira Hidromassagem G',19999.90 
+10, 'Roupeiro 6 portas', 1110.10 
+11, 'Notebook Del vostro', 2200.40 
+12, 'IPhone 6S', 3500.23 
+
+29) selecione os produtos com preço entre 1000 e 2000 
+30) selecione os produtos ordenados de forma ascendente 
+31) selecione os produtos ordenados de forma descendente 
+32) selecione os produtos cujo nome tenha Televisao 
+33) selecione os produtos cujo nome tenha Playstation 
+34) selecione os produtos cujo nome tenha G
+35) selecione os produtos ordenados pelo preço de forma ascendente 
+36) selecione os produtos ordenados pelo preço de forma descendente 
+37) Selecione a quantidade total de produtos.
+38) Selecione a média de preços dos produtos
+39) Selecione a soma total dos preços dos produtos.
+40) Selecione o menor preço.
+41) Selecione as informações do produto de menor preço.
+43) Selecione o maior preço.
+44) Selecione o produto de maior preço.
+45) Selecione os produtos com preço maior ou igual a média de preços.
+46) Selecione os produtos cujo o nome possua 6 ou mais caracteres.
+47) Selecione o nome, o preço, e o preço com desconto de todos os produtos. O preço com desconto deve ser calculado aplicando um desconto de 15% ao preço atual de cada produto.
+48)Selecione os 5 primeiros caracteres do nome de cada produto.
+49)Selecione os produtos com valor baixo de 500 reais.
+50) selecione a média dos produtos que possuem o preço entre 100 e 1000 reais.
+
+
+-- 
+respostas
+
+
+--2
+
+create table carro(
+	id serial not null primary key,
+    marca varchar(10) not null,
+    modelo varchar(20) not null,
+    cor varchar(20) not null,
+    ano_fabricacao integer not null,
+    ano_modelo integer not null,
+    placa varchar(7) not null    
+);
+
+select * from carro
+
+insert into carro(marca,modelo,cor,ano_fabricacao,ano_modelo,placa) 
+values ('Ford','New Fiesta','Branco',2014,2014,'DDD0011'),
+		('Ford', 'Focus', 'Preto',2014,2015,'FFP0000'),
+        ('Ford','Fusion','Prata',2015,2015,'FUP1212'),
+        ('Fiat','147','Branco',1983,1983,'INU1313'),
+        ('Fiat','Uno','Vermelho',2001,2001,'FUV1414'),
+        ('BMW','320I','Prata',2015,2015,'BMP1616')
+        
+
+select * from carro where marca='Ford'
+select * from carro where marca='Fiat'
+select * from carro where ano_fabricacao <2000
+
+select * from carro where ano_modelo=2015
+
+select * from carro where cor='Prata'
+----- 9
+create table cargo(
+	idCargo integer not null primary key,
+    nomeCargo varchar(50),
+    salarioBruto decimal(10,2),
+    descontoSalario decimal(10,2)    
+);
+
+
+create table colaborador(
+	idColaborador integer not null primary key,
+    nomeColaborador varchar(50),
+    idCargo integer,
+    foreign key(idCargo) references cargo(idCargo)
+);
+
+create table colaborador_ferias(
+	idColaborador integer not null primary key,
+    data_saida date,
+   	data_retorno date,
+    foreign key(idColaborador) references colaborador(idColaborador)
+);
+
+select * from cargo
+--12
+
+insert into cargo(idCargo, nomeCargo,salarioBruto,descontoSalario) 
+values (1,		'Estagiário',850,0),
+(2,		'Desenvolvedor Java Júnior - SE',1150.00, 250.00),
+(3,		'Desenvolvedor Java Pleno - SE',1900,400),
+(4,		'Desenvolvedor Java Senior  - SE',3000,600),
+(5	,	'Designer Gráfico',1580,360),
+(6	,	'Analista de Marketing',2400,420),
+(7	,	'Desenvolvedor Java Web Júnior',1230,260),
+(8	,	'Desenvolvedor Java Web Pleno',2170,680),
+(9	,	'Desenvolvedor Java Senior',3400,700),
+(10	,	'Suporte Nível 1',900,120),
+(11	,	'Suporte Nível 2',1600,360),
+(12	,	'Suporte Nível 3',2100,475),
+(13	,	'Web Master Nivel 1',1500,356),
+(14	,	'Web Master Nível 2',2350,580),
+(15	,	'Web Master Nível 3',3600,720),
+(16	,	'Analista de Projetos',5000,1020),
+(17	,	'Projetista',8000,1900),
+(18	,	'Arquiteto de Software',7500,1750),
+(19	,	'Implantador de Sistemas',4600,850),
+(20	,	'Desenvolvedor Java Mobile',6000,980)
+
+select * from cargo
+
+
+
+
+
+
+
+
+
+
+

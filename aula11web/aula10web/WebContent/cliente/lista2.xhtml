@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:head>
+</h:head>
+
+<h:body>
+	<h1>Lista de Clientes</h1>
+
+	<div>
+
+		<h:outputLink value="./form2.xhtml">
+			<f:param name="oid" value="novo" />
+		
+		Novo
+		
+		</h:outputLink>
+
+		<h:dataTable value="#{clienteBean.clientes}" var="cliente">
+			<h:column>
+				<f:facet name="header">Id</f:facet>
+				<h:outputText value="#{cliente.id}" />
+			</h:column>
+
+			<h:column>
+				<f:facet name="header">Nome</f:facet>
+				<h:outputLink value="./form2.xhtml">
+					<f:param name="oid" value="#{cliente.id}" />
+					<h:outputText value="#{cliente.nome}" />
+
+				</h:outputLink>
+			</h:column>
+
+			<h:column>
+				<f:facet name="header">Email</f:facet>
+				<h:outputText value="#{cliente.email}" />
+			</h:column>
+
+			<h:column>
+				<f:facet name="header">Telefone</f:facet>
+				<h:outputText value="#{cliente.telefone}" />
+			</h:column>
+
+			<h:column>
+				<f:facet name="header">CPF</f:facet>
+				<h:outputText value="#{cliente.cpf}" />
+			</h:column>
+
+		</h:dataTable>
+
+
+	</div>
+
+
+</h:body>
+</html>

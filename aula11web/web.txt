@@ -1,0 +1,43 @@
+por padrao a porta (qdo nao especificada é a 80)
+
+ex.: http//192.168.0.72:8080
+
+http//192.168.0.72 (vai usar a porta 80)
+
+http - é a linguagem de comunicação web
+
+
+
+client --> servidor --> container web (tomcat) (request ou response) --> servlet --> tomcat--> servidor --> client
+------------------------
+
+http:
+
+
+get
+post
+put
+delete
+options
+head
+connection
+trace
+patch
+
+
+-------------------
+
+
+query string (exemplo: q=java+web)
+
+
+------------
+
+
+status code : 200 --> quer dizer que a requisição foi com sucesso
+
+
+------------
+
+
+ctrl shift f - formatar colunas

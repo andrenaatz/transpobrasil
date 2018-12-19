@@ -1,0 +1,110 @@
+* /* este ALVO '*' define aplicação para TODOS */ {
+	
+	margin:0; /* distancia do elemento (da borda) em relaçao aos outros elementos */
+	padding:10; /* distancia entre a borda e o conteudo (como se fosse outra caixa dentro do box // o comando border define a
+	borda // o comando content define o tamanho e a altura: width e height  */
+	/* box-sizing:border-box; /* padrao: content-box // border-box: width ocupará até a borda (inclusive a borda) e vai descontando
+	os outros tamanhos definidos: ou seja o maximo de tamanho será 100 px (exemplo) */
+	box-sizing:sans-serif;
+	
+} /* este bloco é uma REGRA // antes da chave é o ALVO (em quem se irá aplicar a regra) */
+
+/* o elemento ID define um ALVO Especifico: Ex.: #main (ID=main) 
+propriedade CLASS do HTML: Ex.: .btn 
+TAG especifica: Ex.: DIV (neste caso todas as tags DIV serão ALVO)
+Compostos: Ex.: #main DIV (neste exemplo pega todos os DIV que são filhos de main, nao importa em qual nível) 
+                #main > DIV (o DIV tem que ser um filho direto) */
+                
+.field{
+	
+	display: flex;
+	flex-direction: column;
+		
+}
+
+
+.field input{
+	
+	margin-bottom: 10px;
+	
+}
+.field label{
+	
+	margin: 0 5px;
+	
+}
+
+.field input[type="text"],
+.field input[type="submit"]{
+	
+	height: 30px;
+	padding:5px;
+	font-size:18px;
+	border-radius:2.5px;
+	margin: 0 5px 10px 5px;
+}
+	
+.btn:hover{
+	
+	opacity: 0.8;
+}
+
+	
+
+
+.is-full-width{
+	
+	width:100%;	
+	
+}
+
+
+.btn{
+	
+	border: none;
+	background-color:#ccc;
+	color:#000;	
+}
+
+.btn-primary{
+	
+	background-color: #336e7b;
+	color: #fff;
+}
+.messages-container{
+	
+	width:500px;
+	margin:0 auto;
+}
+
+.messages-container ul{
+	
+	list-style:nome;
+}
+
+.messages-container li{
+	
+	line-height:1.3;
+	font-size:14px;
+	height:20px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

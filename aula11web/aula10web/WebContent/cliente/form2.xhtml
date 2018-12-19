@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:head>
+
+
+	<link rel="stylesheet"
+		href="#{request.contextPath}/resources/app/css/app2.css" />
+
+
+
+
+</h:head>
+
+<h:body>
+
+	<f:metadata>
+		<f:viewParam name="oid" value="#{clienteBean.oid}"></f:viewParam>
+	</f:metadata>
+
+
+	<h1>Formulário de Clientes</h1>
+
+	<div>
+
+		<h:form>
+			<div class="messages.container">
+				<h:messages />
+			</div>
+		
+			<div class="field">
+				<h:outputLabel value="Id" />
+				<h:inputText styleClass="is-fullwidth"
+					value="#{clienteBean.cliente.id}" readonly="#{true}" />
+			</div>
+
+			<div class="field">
+				<h:outputLabel value="Nome" />
+				<h:inputText styleClass="is-fullwidth"
+					value="#{clienteBean.cliente.nome}" />
+			</div>
+
+			<div class="field">
+				<h:outputLabel value="Email" />
+				<h:inputText styleClass="is-fullwidth"
+					value="#{clienteBean.cliente.email}" />
+			</div>
+			
+			<div class="field">
+				<h:outputLabel value="Telefone" />
+				<h:inputText styleClass="is-fullwidth"
+					value="#{clienteBean.cliente.telefone}" />
+			</div>
+			
+			<div class="field">
+				<h:outputLabel value="CPF" />
+				<h:inputText styleClass="is-fullwidth"
+					value="#{clienteBean.cliente.cpf}" />
+			</div>
+			
+			<div class="field">
+				<h:commandButton styleClass="btn btn-primary is-fullwidth"
+					action="#{clienteBean.salvar()}" value="Salvar" />
+			</div>
+
+		</h:form>
+
+	</div>
+
+
+</h:body>
+</html>
